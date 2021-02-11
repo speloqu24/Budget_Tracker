@@ -8,11 +8,11 @@ const FILES_TO_CACHE = [
   "/icons/icon-192x192.png",
   "/icons/icon-512x512.png",
 ];
-// static
+
 const STATIC_CACHE = "static-cache-v1";
-// runtime
 const DATA_CACHE = "data-cache-v1";
 
+// INSTALL listener to open cache
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(STATIC_CACHE).then((cache) => cache.addAll(FILES_TO_CACHE))
@@ -21,6 +21,7 @@ self.addEventListener("install", (event) => {
   self.skipWaiting();
 });
 
+// ACTIVATE listener to activate cache and remove old data
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keyList) => {
@@ -36,6 +37,7 @@ self.addEventListener("activate", (event) => {
   );
 });
 
+// FETCH
 self.addEventListener("fetch", function (evt) {
   if (evt.request.url.includes("/api/")) {
     evt.respondWith(

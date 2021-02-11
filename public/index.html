@@ -54,8 +54,9 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <!-- Requires access to DB file -->
     <script src="indexedDb.js"></script>
-
+    <!-- Requires access to service-worker.js -->
     <script type="text/javascript">
       (function () {
         if ("serviceWorker" in navigator) {
@@ -68,6 +69,7 @@
         }
       })();
     </script>
+    <!-- Requires index.js -->
     <script src="index.js"></script>
   </body>
 </html>
