@@ -8,8 +8,9 @@ const FILES_TO_CACHE = [
   "/icons/icon-192x192.png",
   "/icons/icon-512x512.png",
 ];
-
+// static
 const STATIC_CACHE = "static-cache-v1";
+// runtime
 const DATA_CACHE = "data-cache-v1";
 
 self.addEventListener("install", (event) => {
@@ -17,11 +18,10 @@ self.addEventListener("install", (event) => {
     caches.open(STATIC_CACHE).then((cache) => cache.addAll(FILES_TO_CACHE))
   );
 
-  // self.skipWaiting();
+  self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {
-  // const currentCaches = [STATIC_CACHE, DATA_CACHE];
   event.waitUntil(
     caches.keys().then((keyList) => {
       return Promise.all(
